@@ -140,8 +140,8 @@ function initNeuralNetwork() {
   renderer.setSize(W(), H());
 
   // ── Particle count based on device ──
-  const PC = IS_MOBILE ? 50 : 120;
-  const CONNECT_DIST = IS_MOBILE ? 9 : 13;
+  const PC = IS_MOBILE ? 30 : 120;
+  const CONNECT_DIST = 13;
 
   const positions  = new Float32Array(PC * 3);
   const velocities = [];
@@ -201,7 +201,7 @@ function initNeuralNetwork() {
     scene.add(linesMesh);
   }
 
-  // ── Mouse parallax ──
+  // ── Mouse / touch parallax ──
   let mouseX = 0, mouseY = 0;
   let targetRX = 0, targetRY = 0;
 
@@ -212,9 +212,25 @@ function initNeuralNetwork() {
     targetRX = -mouseY * 0.15;
   }, { passive: true });
 
+  document.addEventListener('touchmove', e => {
+    const t = e.touches[0];
+    mouseX = (t.clientX / window.innerWidth  - 0.5) * 2;
+    mouseY = (t.clientY / window.innerHeight - 0.5) * 2;
+    targetRY =  mouseX * 0.12;
+    targetRX = -mouseY * 0.08;
+  }, { passive: true });
+
   // ── Animation loop ──
   let frame = 0;
+  let animating = true;
+
+  document.addEventListener('visibilitychange', () => {
+    animating = !document.hidden;
+    if (animating) requestAnimationFrame(animate);
+  });
+
   function animate() {
+    if (!animating) return;
     requestAnimationFrame(animate);
     frame++;
 
@@ -230,7 +246,7 @@ function initNeuralNetwork() {
     }
     ptGeo.attributes.position.needsUpdate = true;
 
-    if (frame % (IS_MOBILE ? 5 : 3) === 0) updateConnections();
+    if (!IS_MOBILE && frame % 3 === 0) updateConnections();
 
     // Smooth camera rotation
     scene.rotation.y += (targetRY - scene.rotation.y) * 0.025;
@@ -240,12 +256,14 @@ function initNeuralNetwork() {
   }
   animate();
 
-  // ── Resize ──
-  window.addEventListener('resize', () => {
+  // ── Resize & orientation ──
+  function onResize() {
     camera.aspect = W() / H();
     camera.updateProjectionMatrix();
     renderer.setSize(W(), H());
-  }, { passive: true });
+  }
+  window.addEventListener('resize', onResize, { passive: true });
+  window.addEventListener('orientationchange', () => setTimeout(onResize, 200), { passive: true });
 }
 
 /* ============================================================
