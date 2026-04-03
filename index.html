@@ -1,579 +1,805 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Irfan Muhammad Khan - Agentic AI Developer</title>
-    <meta name="description" content="Irfan Muhammad Khan is a skilled Agentic AI Developer specializing in artificial intelligence, agentic systems, and AI tools utilization.">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/themes.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Irfan Muhammad Khan — AI Developer &amp; Problem Solver</title>
+  <meta name="description" content="Irfan Muhammad Khan — Agentic AI Developer specializing in intelligent systems, LLM integration, multi-agent workflows, and prompt engineering. PIAIC, Karachi.">
+  <meta name="keywords" content="Agentic AI, LLM, Prompt Engineering, AI Developer, PIAIC, Pakistan, OpenAI, Claude, Multi-Agent">
+  <meta property="og:title" content="Irfan Muhammad Khan — AI Developer &amp; Problem Solver">
+  <meta property="og:description" content="Building cutting-edge AI systems, agentic workflows, and intelligent automation.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#050510">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="#home">Irfan Muhammad Khan</a>
-            </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#contact" class="nav-link">Contact</a>
-                <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">🌙</button>
-            </div>
-            <div class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">Agentic AI Developer</div>
-            <h1 class="hero-title">Hi, I'm <span class="highlight">Irfan Muhammad Khan</span></h1>
-            <p class="hero-subtitle">AI Specialist & Agentic Systems Developer</p>
-            <p class="hero-description">
-                I develop intelligent agentic AI systems and specialize in artificial intelligence,
-                AI tools utilization, and prompt engineering. As a student at PIAIC, I focus on
-                creating innovative AI solutions that leverage cutting-edge technology.
+  <!-- Skip Link (Accessibility) -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Loading Screen -->
+  <div class="loader" id="loader" role="progressbar" aria-label="Loading">
+    <div class="loader-logo">Irfan<span>.</span></div>
+    <div class="loader-track"><div class="loader-fill" id="loader-fill"></div></div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress" role="progressbar" aria-label="Page scroll progress"></div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="#home" aria-label="Home — Irfan Muhammad Khan">
+          <span class="logo-text">Irfan<span class="logo-dot">.</span></span>
+        </a>
+      </div>
+
+      <div class="nav-menu" id="nav-menu" role="menubar">
+        <a href="#home"       class="nav-link" role="menuitem">Home</a>
+        <a href="#about"      class="nav-link" role="menuitem">About</a>
+        <a href="#skills"     class="nav-link" role="menuitem">Skills</a>
+        <a href="#projects"   class="nav-link" role="menuitem">Projects</a>
+        <a href="#experience" class="nav-link" role="menuitem">Journey</a>
+        <a href="#contact"    class="nav-link" role="menuitem">Contact</a>
+        <a href="resume.html" class="nav-link nav-link-resume" role="menuitem" target="_blank">
+          <i class="fas fa-file-alt" aria-hidden="true"></i> Resume
+        </a>
+      </div>
+
+      <a href="#contact" class="nav-cta" aria-label="Hire me">
+        <i class="fas fa-bolt" aria-hidden="true"></i> Hire Me
+      </a>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN CONTENT
+  ════════════════════════════════════════════ -->
+  <main id="main">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section id="home" class="hero" aria-label="Hero — Introduction">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-bg-gradient" aria-hidden="true"></div>
+
+    <div class="hero-container container">
+
+      <!-- Left: Content -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot" aria-hidden="true"></span>
+          Available for AI Projects
+        </div>
+
+        <h1 class="hero-title">
+          AI Developer<br>
+          <span class="name-line">&amp; Problem Solver</span>
+        </h1>
+
+        <p class="hero-subtitle" aria-live="polite">
+          <span class="typing-static">I build </span><span id="typing-text" class="typing-dynamic"></span><span class="typing-cursor" aria-hidden="true"></span>
+        </p>
+
+        <p class="hero-description">
+          Agentic AI Developer specializing in intelligent systems, LLM integration,
+          and prompt engineering. PIAIC student passionate about building AI solutions
+          that solve real-world challenges.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#projects" class="btn-primary">
+            <i class="fas fa-rocket" aria-hidden="true"></i>
+            View My Work
+          </a>
+          <a href="#contact" class="btn-ghost">
+            Get In Touch
+          </a>
+          <a href="resume.html" class="btn-ghost btn-resume-dl" target="_blank" aria-label="Download Resume">
+            <i class="fas fa-download" aria-hidden="true"></i>
+            Resume
+          </a>
+        </div>
+
+        <div class="hero-stats" aria-label="Key statistics">
+          <div class="stat-item">
+            <span class="stat-number" data-count="50" aria-label="50 plus">0</span><span class="stat-suffix" aria-hidden="true">+</span>
+            <span class="stat-label">Projects Done</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="10" aria-label="10 plus">0</span><span class="stat-suffix" aria-hidden="true">+</span>
+            <span class="stat-label">AI Tools Mastered</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="25" aria-label="25 plus">0</span><span class="stat-suffix" aria-hidden="true">+</span>
+            <span class="stat-label">Happy Clients</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Visual -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="profile-container">
+          <div class="profile-ring ring-1"></div>
+          <div class="profile-ring ring-2"></div>
+          <div class="profile-ring ring-3"></div>
+          <div class="profile-glow"></div>
+          <div class="profile-image-wrapper">
+            <img src="assets/images/Irfan.png"
+                 alt="Irfan Muhammad Khan — Agentic AI Developer"
+                 class="profile-image"
+                 loading="eager"
+                 onerror="this.parentElement.innerHTML='<div class=\'profile-fallback\'>IMK</div>'">
+            <div class="profile-overlay" aria-hidden="true"></div>
+          </div>
+
+          <div class="floating-badge badge-ai">
+            <i class="fas fa-robot" aria-hidden="true"></i>
+            <span>AI Expert</span>
+          </div>
+          <div class="floating-badge badge-code">
+            <i class="fas fa-code" aria-hidden="true"></i>
+            <span>Developer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══════ ABOUT ═══════ -->
+  <section id="about" class="about" aria-labelledby="about-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Who I Am</span>
+        <h2 class="section-title" id="about-title">About Me</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text reveal reveal-left">
+          <p>
+            I'm a passionate <strong>Agentic AI Developer</strong> and AI Specialist with expertise in
+            artificial intelligence, agentic systems, and AI tools utilization. My journey began at
+            <strong>PIAIC</strong> (Presidential Initiative for Artificial Intelligence &amp; Computing),
+            where I focus on building intelligent systems using cutting-edge AI technologies.
+          </p>
+          <p>
+            I believe in building AI responsibly — creating solutions that enhance human capabilities
+            and solve real problems. My approach combines technical depth with creative problem-solving
+            to deliver AI solutions that drive meaningful innovation.
+          </p>
+          <p>
+            With a background in B.Com and business management, I bridge the gap between
+            technical AI development and practical business applications — uniquely positioned
+            to deliver AI solutions that create real value.
+          </p>
+
+          <div class="about-highlights">
+            <div class="highlight-card stagger-1">
+              <div class="highlight-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+              <h4>Education</h4>
+              <p>B.Com Graduate<br>PIAIC AI Program<br>2023 — Present</p>
+            </div>
+            <div class="highlight-card stagger-2">
+              <div class="highlight-icon"><i class="fas fa-crosshairs" aria-hidden="true"></i></div>
+              <h4>Focus Areas</h4>
+              <p>Agentic AI Systems<br>LLM Integration<br>Prompt Engineering</p>
+            </div>
+            <div class="highlight-card stagger-3">
+              <div class="highlight-icon"><i class="fas fa-language" aria-hidden="true"></i></div>
+              <h4>Languages</h4>
+              <p>English — Professional<br>Urdu — Native<br>Karachi, Pakistan</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-skills reveal reveal-right">
+          <h3>Core Competencies</h3>
+          <div class="skills-list">
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Agentic AI Development</span>
+                <span class="skill-percent">88%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-progress" data-width="88"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Prompt Engineering</span>
+                <span class="skill-percent">92%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-progress" data-width="92"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">AI Tools Utilization</span>
+                <span class="skill-percent">95%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-progress" data-width="95"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Python &amp; APIs</span>
+                <span class="skill-percent">75%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Leadership &amp; Strategy</span>
+                <span class="skill-percent">90%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ SKILLS ═══════ -->
+  <section id="skills" class="skills" aria-labelledby="skills-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-label">What I Know</span>
+        <h2 class="section-title" id="skills-title">Technical Skills</h2>
+        <p class="section-subtitle">A comprehensive toolkit built through hands-on AI project development and continuous learning.</p>
+      </div>
+
+      <div class="skills-grid">
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fas fa-robot" aria-hidden="true"></i></div>
+            <h3>Agentic AI &amp; LLMs</h3>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Agentic AI Systems</span>
+            <span class="tech-tag">LLM Integration</span>
+            <span class="tech-tag">Multi-Agent Workflows</span>
+            <span class="tech-tag">RAG Systems</span>
+            <span class="tech-tag">AI Chatbots</span>
+            <span class="tech-tag">OpenAI API</span>
+            <span class="tech-tag">Claude API</span>
+            <span class="tech-tag">Gemini API</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fas fa-pen-nib" aria-hidden="true"></i></div>
+            <h3>Prompt Engineering</h3>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Chain-of-Thought</span>
+            <span class="tech-tag">Few-Shot Learning</span>
+            <span class="tech-tag">Zero-Shot Prompting</span>
+            <span class="tech-tag">Role Prompting</span>
+            <span class="tech-tag">Prompt Optimization</span>
+            <span class="tech-tag">System Prompt Design</span>
+            <span class="tech-tag">Instruction Tuning</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fas fa-code" aria-hidden="true"></i></div>
+            <h3>Programming &amp; Dev</h3>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">REST APIs</span>
+            <span class="tech-tag">Git &amp; GitHub</span>
+            <span class="tech-tag">VS Code</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fas fa-tools" aria-hidden="true"></i></div>
+            <h3>AI Tools &amp; Platforms</h3>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">ChatGPT</span>
+            <span class="tech-tag">Claude Code</span>
+            <span class="tech-tag">Cursor AI</span>
+            <span class="tech-tag">Perplexity AI</span>
+            <span class="tech-tag">Midjourney</span>
+            <span class="tech-tag">DALL-E</span>
+            <span class="tech-tag">ElevenLabs</span>
+            <span class="tech-tag">Hugging Face</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fas fa-users-cog" aria-hidden="true"></i></div>
+            <h3>Leadership &amp; Strategy</h3>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Team Leadership</span>
+            <span class="tech-tag">Project Management</span>
+            <span class="tech-tag">Critical Thinking</span>
+            <span class="tech-tag">Problem Solving</span>
+            <span class="tech-tag">Strategic Planning</span>
+            <span class="tech-tag">Stakeholder Comms</span>
+            <span class="tech-tag">Decision Making</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
+            <h3>Business &amp; Digital</h3>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Digital Marketing</span>
+            <span class="tech-tag">Content Creation</span>
+            <span class="tech-tag">Canva Design</span>
+            <span class="tech-tag">E-commerce</span>
+            <span class="tech-tag">MS Office Suite</span>
+            <span class="tech-tag">Google Workspace</span>
+            <span class="tech-tag">Business Analysis</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ PROJECTS ═══════ -->
+  <section id="projects" class="projects" aria-labelledby="projects-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-label">What I Build</span>
+        <h2 class="section-title" id="projects-title">Featured Projects</h2>
+        <p class="section-subtitle">Real-world AI solutions built to solve complex problems — each a case study in problem, solution, and impact.</p>
+      </div>
+
+      <div class="project-filters" role="group" aria-label="Filter projects by category">
+        <button class="filter-btn active" data-filter="all">
+          <i class="fas fa-th" aria-hidden="true"></i> All Projects
+        </button>
+        <button class="filter-btn" data-filter="ai">
+          <i class="fas fa-robot" aria-hidden="true"></i> Agentic AI
+        </button>
+        <button class="filter-btn" data-filter="web">
+          <i class="fas fa-globe" aria-hidden="true"></i> Web Apps
+        </button>
+        <button class="filter-btn" data-filter="tools">
+          <i class="fas fa-tools" aria-hidden="true"></i> AI Tools
+        </button>
+      </div>
+
+      <div class="projects-grid" id="projects-grid">
+        <!-- Dynamically rendered by projects.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ EXPERIENCE ═══════ -->
+  <section id="experience" class="experience" aria-labelledby="experience-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-label">My Journey</span>
+        <h2 class="section-title" id="experience-title">Experience &amp; Education</h2>
+        <p class="section-subtitle">A path driven by curiosity, continuous learning, and a passion for building with AI.</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-marker"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2023 — Present</span>
+            <h3>AI Developer Student</h3>
+            <h4>PIAIC — Presidential Initiative for AI &amp; Computing</h4>
+            <p class="timeline-description">
+              Enrolled in Pakistan's premier AI education program, focusing on Agentic AI systems,
+              LLM integration, Python programming, and modern AI development practices under industry experts.
             </p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-            </div>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">50+</span>
-                    <span class="stat-label">Projects Completed</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">5+</span>
-                    <span class="stat-label">Years Experience</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">25+</span>
-                    <span class="stat-label">Happy Clients</span>
-                </div>
-            </div>
+            <ul class="timeline-bullets">
+              <li>Mastered agentic AI frameworks and multi-agent workflows</li>
+              <li>Built 50+ AI projects including RAG systems and intelligent chatbots</li>
+              <li>Deep expertise in prompt engineering and LLM optimization</li>
+              <li>Hands-on experience with OpenAI, Claude, and Gemini APIs</li>
+            </ul>
+          </div>
         </div>
-        <div class="hero-image">
-            <img src="assets/images/irfan.jpeg" alt="Irfan Muhammad Khan - Agentic AI Developer" class="profile-image" />
-            <div class="ai-powered-badge">Powered by AI</div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"><i class="fas fa-briefcase" aria-hidden="true"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2024 — Present</span>
+            <h3>Freelance AI Developer</h3>
+            <h4>Self-Employed — Remote</h4>
+            <p class="timeline-description">
+              Delivering custom AI solutions for businesses and entrepreneurs worldwide.
+              Specializing in intelligent chatbots, automated workflows, and AI-powered
+              tools using the latest LLM technologies.
+            </p>
+            <ul class="timeline-bullets">
+              <li>Developed AI-powered chatbots for 10+ business clients</li>
+              <li>Built automated content generation and workflow systems</li>
+              <li>Integrated AI APIs into existing business platforms</li>
+              <li>100% client satisfaction with on-time delivery track record</li>
+            </ul>
+          </div>
         </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        I'm a passionate Agentic AI Developer and AI Specialist with expertise in artificial intelligence,
-                        agentic systems, and AI tools utilization. My journey in AI began at PIAIC (Presidential Initiative
-                        for Artificial Intelligence & Computing), where I focus on developing intelligent systems and
-                        leveraging cutting-edge AI technologies.
-                    </p>
-                    <p>
-                        I believe in utilizing AI responsibly and creating solutions that enhance human capabilities.
-                        My approach combines technical expertise with creative problem-solving to deliver
-                        AI solutions that address real-world challenges and drive innovation.
-                    </p>
-                    <p>
-                        When I'm not developing AI solutions, you can find me exploring new AI technologies,
-                        studying agentic AI concepts, or contributing to the AI community through knowledge sharing
-                        and continuous learning.
-                    </p>
-                    <div class="about-highlights">
-                        <div class="highlight-item">
-                            <h4>Education</h4>
-                            <p>Graduate (B.Com)<br />Student at PIAIC - Artificial Intelligence Program</p>
-                        </div>
-                        <div class="highlight-item">
-                            <h4>Focus Areas</h4>
-                            <p>Agentic AI Development<br />AI Tools Utilization</p>
-                        </div>
-                        <div class="highlight-item">
-                            <h4>Languages</h4>
-                            <p>English, Urdu</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-skills">
-                    <h3>Core Competencies</h3>
-                    <div class="skills-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Frontend Development</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">UI/UX Design</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Responsive Design</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 98%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Performance Optimization</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 92%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"><i class="fas fa-store" aria-hidden="true"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2020 — 2023</span>
+            <h3>Business Operations Manager</h3>
+            <h4>Self-Employed — Karachi, Pakistan</h4>
+            <p class="timeline-description">
+              Managed e-commerce operations and digital marketing initiatives, leveraging
+              digital tools to grow business. This experience provides the business foundation
+              now applied to building practical AI solutions.
+            </p>
+            <ul class="timeline-bullets">
+              <li>Managed digital marketing campaigns with measurable ROI</li>
+              <li>Scaled e-commerce operations using data-driven strategies</li>
+              <li>Led team of 5+ in day-to-day business operations</li>
+            </ul>
+          </div>
         </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Artificial Intelligence & Agentic AI</h3>
-                    <div class="skill-tags">
-                        <span class="tech-tag">AI Fundamentals</span>
-                        <span class="tech-tag">Agentic AI Concepts</span>
-                        <span class="tech-tag">AI Tools Utilization</span>
-                        <span class="tech-tag">Prompt Engineering</span>
-                        <span class="tech-tag">Research & Creativity</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Leadership & Management</h3>
-                    <div class="skill-tags">
-                        <span class="tech-tag">Team Handling</span>
-                        <span class="tech-tag">Critical Thinking</span>
-                        <span class="tech-tag">Problem Solving</span>
-                        <span class="tech-tag">Negotiation</span>
-                        <span class="tech-tag">Communication</span>
-                        <span class="tech-tag">Administration</span>
-                        <span class="tech-tag">Management</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Digital & Design Skills</h3>
-                    <div class="skill-tags">
-                        <span class="tech-tag">Digital Marketing</span>
-                        <span class="tech-tag">Graphic Designing</span>
-                        <span class="tech-tag">E-commerce</span>
-                        <span class="tech-tag">Accounting</span>
-                        <span class="tech-tag">Operations</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Technical Proficiencies</h3>
-                    <div class="skill-tags">
-                        <span class="tech-tag">MS Office Suite</span>
-                        <span class="tech-tag">MS Word</span>
-                        <span class="tech-tag">MS Excel</span>
-                        <span class="tech-tag">MS PowerPoint</span>
-                        <span class="tech-tag">MS Visio</span>
-                        <span class="tech-tag">Digital Tools</span>
-                        <span class="tech-tag">AI Productivity Tools</span>
-                    </div>
-                </div>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"><i class="fas fa-university" aria-hidden="true"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2017 — 2020</span>
+            <h3>Bachelor of Commerce (B.Com)</h3>
+            <h4>University of Karachi — Karachi, Pakistan</h4>
+            <p class="timeline-description">
+              Comprehensive business education covering accounting, finance, economics,
+              and business management — providing the business foundation for building
+              practical, value-driven AI solutions.
+            </p>
+            <ul class="timeline-bullets">
+              <li>Strong foundation in business analytics and economics</li>
+              <li>Developed strategic thinking and management skills</li>
+            </ul>
+          </div>
         </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <!-- Project Card 1 -->
-                <div class="project-card">
-                    <div class="project-image project-placeholder-1">
-                        <div class="project-overlay">
-                            <span>E-commerce Platform</span>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">ShopEase - E-commerce Platform</h3>
-                        <p class="project-description">
-                            A comprehensive e-commerce platform with advanced features including
-                            personalized recommendations, real-time inventory management,
-                            secure payment processing, and seamless user experience across all devices.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">Stripe API</span>
-                            <span class="tech-tag">Redux</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://shopease-demo.com" class="btn btn-small" target="_blank">Live Demo</a>
-                            <a href="https://github.com/ahmedraza/shopease" class="btn btn-small btn-outline" target="_blank">Source Code</a>
-                        </div>
-                    </div>
-                </div>
+      </div>
+    </div>
+  </section>
 
-                <!-- Project Card 2 -->
-                <div class="project-card">
-                    <div class="project-image project-placeholder-2">
-                        <div class="project-overlay">
-                            <span>Task Manager</span>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">FlowSync - Project Management Tool</h3>
-                        <p class="project-description">
-                            A sophisticated project management application featuring real-time collaboration,
-                            advanced analytics, automated workflows, and customizable dashboards.
-                            Designed for teams looking to streamline their project delivery process.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Vue.js</span>
-                            <span class="tech-tag">Express</span>
-                            <span class="tech-tag">PostgreSQL</span>
-                            <span class="tech-tag">Socket.io</span>
-                            <span class="tech-tag">D3.js</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://flowsync-demo.com" class="btn btn-small" target="_blank">Live Demo</a>
-                            <a href="https://github.com/ahmedraza/flowsync" class="btn btn-small btn-outline" target="_blank">Source Code</a>
-                        </div>
-                    </div>
-                </div>
+  <!-- ═══════ RESUME & COVER LETTER ═══════ -->
+  <section id="resume" class="resume-section-portfolio" aria-labelledby="resume-section-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-label">Professional Documents</span>
+        <h2 class="section-title" id="resume-section-title">Resume &amp; Cover Letter</h2>
+        <p class="section-subtitle">Professionally crafted documents — auto-updated whenever the portfolio content changes.</p>
+      </div>
 
-                <!-- Project Card 3 -->
-                <div class="project-card">
-                    <div class="project-image project-placeholder-3">
-                        <div class="project-overlay">
-                            <span>Fitness App</span>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">FitLife - Health & Fitness Tracker</h3>
-                        <p class="project-description">
-                            A comprehensive health and fitness application with personalized workout plans,
-                            nutrition tracking, progress monitoring, and social features.
-                            Built with focus on user engagement and data visualization.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Chart.js</span>
-                            <span class="tech-tag">HealthKit API</span>
-                            <span class="tech-tag">Redux</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://fitlife-demo.com" class="btn btn-small" target="_blank">Live Demo</a>
-                            <a href="https://github.com/ahmedraza/fitlife" class="btn btn-small btn-outline" target="_blank">Source Code</a>
-                        </div>
-                    </div>
-                </div>
+      <div class="resume-cards reveal">
 
-                <!-- Project Card 4 -->
-                <div class="project-card">
-                    <div class="project-image project-placeholder-1">
-                        <div class="project-overlay">
-                            <span>Analytics</span>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">DataViz Pro - Business Analytics</h3>
-                        <p class="project-description">
-                            Advanced business intelligence platform with real-time data visualization,
-                            predictive analytics, and automated reporting. Helps businesses make
-                            data-driven decisions with intuitive dashboards and insights.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Angular</span>
-                            <span class="tech-tag">D3.js</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">AWS</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://dataviz-demo.com" class="btn btn-small" target="_blank">Live Demo</a>
-                            <a href="https://github.com/ahmedraza/dataviz-pro" class="btn btn-small btn-outline" target="_blank">Source Code</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 5 -->
-                <div class="project-card">
-                    <div class="project-image project-placeholder-2">
-                        <div class="project-overlay">
-                            <span>Education</span>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">LearnHub - Online Learning Platform</h3>
-                        <p class="project-description">
-                            Interactive online learning platform with video streaming, progress tracking,
-                            certification system, and community features. Designed to provide
-                            engaging educational experiences for learners worldwide.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">WebRTC</span>
-                            <span class="tech-tag">Stripe API</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://learnhub-demo.com" class="btn btn-small" target="_blank">Live Demo</a>
-                            <a href="https://github.com/ahmedraza/learnhub" class="btn btn-small btn-outline" target="_blank">Source Code</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 6 -->
-                <div class="project-card">
-                    <div class="project-image project-placeholder-3">
-                        <div class="project-overlay">
-                            <span>Travel</span>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Wanderlust - Travel Planning App</h3>
-                        <p class="project-description">
-                            Comprehensive travel planning application featuring itinerary builder,
-                            real-time flight tracking, local recommendations, and social sharing.
-                            Makes trip planning effortless and enjoyable for travelers.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Express</span>
-                            <span class="tech-tag">Mapbox API</span>
-                            <span class="tech-tag">Geolocation API</span>
-                            <span class="tech-tag">Airbnb API</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://wanderlust-demo.com" class="btn btn-small" target="_blank">Live Demo</a>
-                            <a href="https://github.com/ahmedraza/wanderlust" class="btn btn-small btn-outline" target="_blank">Source Code</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="resume-doc-card">
+          <div class="resume-doc-icon">
+            <i class="fas fa-file-alt" aria-hidden="true"></i>
+          </div>
+          <div class="resume-doc-info">
+            <h3>Resume / CV</h3>
+            <p>Full professional resume with experience, skills, education, and featured projects. Optimized for both screen viewing and PDF download.</p>
+            <ul class="resume-doc-highlights">
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Work experience &amp; education</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Technical skills breakdown</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Top 3 featured projects</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Print-ready PDF export</li>
+            </ul>
+          </div>
+          <div class="resume-doc-actions">
+            <a href="resume.html" class="btn-doc-primary" target="_blank" rel="noopener noreferrer" aria-label="View Resume">
+              <i class="fas fa-eye" aria-hidden="true"></i> View Resume
+            </a>
+            <a href="resume.html" class="btn-doc-ghost" target="_blank" rel="noopener noreferrer" aria-label="Download Resume as PDF"
+               onclick="setTimeout(()=>window.open('resume.html','_blank').print(),800);return false;">
+              <i class="fas fa-download" aria-hidden="true"></i> Download PDF
+            </a>
+          </div>
         </div>
-    </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title">Work Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Senior Frontend Developer</h3>
-                        <h4>TechCorp Solutions</h4>
-                        <p class="timeline-date">Jan 2022 - Present</p>
-                        <p class="timeline-description">
-                            Lead frontend development for enterprise SaaS products. Architected reusable
-                            components and established coding standards. Mentored junior developers and
-                            collaborated with UX designers to implement pixel-perfect interfaces.
-                        </p>
-                        <ul class="timeline-bullets">
-                            <li>Led development of 3 major products serving 10K+ users</li>
-                            <li>Improved application performance by 40% through optimization</li>
-                            <li>Mentored 5 junior developers and conducted code reviews</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Frontend Developer</h3>
-                        <h4>Digital Innovations Inc.</h4>
-                        <p class="timeline-date">Mar 2020 - Dec 2021</p>
-                        <p class="timeline-description">
-                            Developed responsive web applications using React and Vue.js. Collaborated
-                            with backend teams to integrate RESTful APIs and implemented CI/CD pipelines.
-                        </p>
-                        <ul class="timeline-bullets">
-                            <li>Developed 15+ responsive web applications</li>
-                            <li>Implemented automated testing reducing bugs by 60%</li>
-                            <li>Collaborated with design team to improve UX by 35%</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Junior Web Developer</h3>
-                        <h4>Creative Web Agency</h4>
-                        <p class="timeline-date">Jun 2019 - Feb 2020</p>
-                        <p class="timeline-description">
-                            Built client websites using HTML, CSS, and JavaScript. Assisted in
-                            converting PSD designs to responsive web pages and maintained existing sites.
-                        </p>
-                        <ul class="timeline-bullets">
-                            <li>Created 20+ responsive client websites</li>
-                            <li>Improved site loading speeds by 30%</li>
-                            <li>Received recognition for quality work and client satisfaction</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="resume-doc-card">
+          <div class="resume-doc-icon resume-doc-icon-cl">
+            <i class="fas fa-envelope-open-text" aria-hidden="true"></i>
+          </div>
+          <div class="resume-doc-info">
+            <h3>Cover Letter</h3>
+            <p>Professional, customizable cover letter. Enter any company name, role, and hiring manager — the letter updates instantly before you download or send.</p>
+            <ul class="resume-doc-highlights">
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Live customization (company, role)</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Professional narrative</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Instant PDF download</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Auto-synced with portfolio</li>
+            </ul>
+          </div>
+          <div class="resume-doc-actions">
+            <a href="cover-letter.html" class="btn-doc-primary" target="_blank" rel="noopener noreferrer" aria-label="View Cover Letter">
+              <i class="fas fa-eye" aria-hidden="true"></i> View Letter
+            </a>
+            <a href="cover-letter.html" class="btn-doc-ghost" target="_blank" rel="noopener noreferrer" aria-label="Customize Cover Letter">
+              <i class="fas fa-edit" aria-hidden="true"></i> Customize
+            </a>
+          </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's discuss your project</h3>
-                    <p>I'm currently available for freelance work and open to new opportunities.
-                       Feel free to reach out if you want to collaborate or just say hello!</p>
+      </div>
 
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <h4>📧 Email</h4>
-                            <a href="mailto:irfanmuhammadk786@gmail.com">irfanmuhammadk786@gmail.com</a>
-                        </div>
+      <p class="resume-auto-note reveal">
+        <i class="fas fa-sync-alt" aria-hidden="true"></i>
+        <strong>Auto-update system:</strong> Both documents are dynamically rendered from <code>js/resume-data.js</code>.
+        Update that single file — experience, skills, projects — and both documents refresh automatically.
+      </p>
+    </div>
+  </section>
 
-                        <div class="contact-method">
-                            <h4>📱 Phone</h4>
-                            <a href="tel:+923152185186">+92 315 2185186</a>
-                        </div>
+  <!-- ═══════ CONTACT ═══════ -->
+  <section id="contact" class="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-label">Let's Connect</span>
+        <h2 class="section-title" id="contact-title">Get In Touch</h2>
+      </div>
 
-                        <div class="contact-method">
-                            <h4>📍 Location</h4>
-                            <p>North Karachi, Karachi, Sindh, Pakistan</p>
-                        </div>
+      <div class="contact-grid">
 
-                        <div class="contact-method">
-                            <h4>🕒 Availability</h4>
-                            <p>Monday - Saturday: 9AM - 8PM (PKT)</p>
-                        </div>
-                    </div>
+        <!-- Contact info -->
+        <div class="contact-info reveal reveal-left">
+          <h3>Let's build something amazing together</h3>
+          <p>
+            I'm currently open to freelance AI projects and new opportunities.
+            Whether you need an intelligent chatbot, an agentic workflow system,
+            or AI integration — let's talk!
+          </p>
 
-                    <div class="social-profiles">
-                        <h4>Follow Me</h4>
-                        <div class="social-links">
-                            <a href="https://github.com/ahmedraza" target="_blank" aria-label="GitHub">GitHub</a>
-                            <a href="https://linkedin.com/in/ahmedraza" target="_blank" aria-label="LinkedIn">LinkedIn</a>
-                            <a href="https://twitter.com/ahmedraza_dev" target="_blank" aria-label="Twitter">Twitter</a>
-                            <a href="https://dribbble.com/ahmedraza" target="_blank" aria-label="Dribbble">Dribbble</a>
-                        </div>
-                    </div>
-                </div>
-
-                <form class="contact-form" id="contact-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="subject">Subject *</label>
-                        <input type="text" id="subject" name="subject" placeholder="What's this regarding?" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="budget">Budget Range (Optional)</label>
-                        <select id="budget" name="budget">
-                            <option value="">Select budget range</option>
-                            <option value="under-1k">Under $1,000</option>
-                            <option value="1k-5k">$1,000 - $5,000</option>
-                            <option value="5k-10k">$5,000 - $10,000</option>
-                            <option value="over-10k">Over $10,000</option>
-                            <option value="negotiable">Negotiable</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" rows="6" placeholder="Tell me about your project..." required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-full">
-                        Send Message
-                        <span class="btn-loader" style="display: none;">•••</span>
-                    </button>
-                </form>
+          <div class="contact-methods">
+            <a href="mailto:irfanmuhammadk786@gmail.com" class="contact-method" aria-label="Send email">
+              <div class="contact-method-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
+              <div class="contact-method-text">
+                <h4>Email</h4>
+                <span>irfanmuhammadk786@gmail.com</span>
+              </div>
+            </a>
+            <a href="https://wa.me/923152185186" class="contact-method" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <div class="contact-method-icon"><i class="fab fa-whatsapp" aria-hidden="true"></i></div>
+              <div class="contact-method-text">
+                <h4>WhatsApp</h4>
+                <span>+92 315 2185186</span>
+              </div>
+            </a>
+            <div class="contact-method">
+              <div class="contact-method-icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div>
+              <div class="contact-method-text">
+                <h4>Location</h4>
+                <span>North Karachi, Karachi, Pakistan</span>
+              </div>
             </div>
+            <div class="contact-method">
+              <div class="contact-method-icon"><i class="fas fa-clock" aria-hidden="true"></i></div>
+              <div class="contact-method-text">
+                <h4>Availability</h4>
+                <span>Mon – Sat: 9AM – 8PM (PKT)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-profiles">
+            <h4>Find Me Online</h4>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/irfanmuhammadkhan08" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                <i class="fab fa-linkedin" aria-hidden="true"></i><span>LinkedIn</span>
+              </a>
+              <a href="https://x.com/irfanimk08" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X (Twitter)">
+                <i class="fab fa-x-twitter" aria-hidden="true"></i><span>Twitter/X</span>
+              </a>
+              <a href="https://www.instagram.com/irfanmuhammadkhan08" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                <i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span>
+              </a>
+              <a href="https://www.facebook.com/irfanmuhammadkhan08" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+                <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook</span>
+              </a>
+              <a href="https://www.tiktok.com/@irfanmuhammadkhan08" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
+                <i class="fab fa-tiktok" aria-hidden="true"></i><span>TikTok</span>
+              </a>
+              <a href="https://www.threads.com/@irfanmuhammadkhan08" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Threads">
+                <i class="fab fa-threads" aria-hidden="true"></i><span>Threads</span>
+              </a>
+              <a href="https://www.snapchat.com/add/irfanimk08" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Snapchat">
+                <i class="fab fa-snapchat" aria-hidden="true"></i><span>Snapchat</span>
+              </a>
+              <a href="https://linktr.ee/IrfanIMK" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Linktree">
+                <i class="fas fa-link" aria-hidden="true"></i><span>Linktree</span>
+              </a>
+            </div>
+          </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Irfan Muhammad Khan</h4>
-                    <p>Developing intelligent AI solutions and agentic systems with cutting-edge artificial intelligence technologies.</p>
-                    <div class="footer-social">
-                        <a href="#" target="_blank" aria-label="GitHub">GH</a>
-                        <a href="#" target="_blank" aria-label="LinkedIn">LI</a>
-                        <a href="#" target="_blank" aria-label="Twitter">TW</a>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#skills">Skills</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Focus Areas</h4>
-                    <ul>
-                        <li><a href="#projects">Agentic AI</a></li>
-                        <li><a href="#projects">AI Development</a></li>
-                        <li><a href="#projects">AI Tools</a></li>
-                        <li><a href="#projects">Prompt Engineering</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <ul>
-                        <li>irfanmuhammadk786@gmail.com</li>
-                        <li>+92 315 2185186</li>
-                        <li>North Karachi, Karachi, Sindh, Pakistan</li>
-                    </ul>
-                </div>
+        <!-- Contact form -->
+        <form class="contact-form reveal reveal-right" id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name <span class="required" aria-hidden="true">*</span></label>
+              <div class="input-wrapper">
+                <i class="fas fa-user input-icon" aria-hidden="true"></i>
+                <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name" minlength="2">
+              </div>
             </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 Irfan Muhammad Khan. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="#privacy">Privacy Policy</a>
-                    <a href="#terms">Terms of Service</a>
-                </div>
+            <div class="form-group">
+              <label for="email">Email Address <span class="required" aria-hidden="true">*</span></label>
+              <div class="input-wrapper">
+                <i class="fas fa-envelope input-icon" aria-hidden="true"></i>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
+              </div>
             </div>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject <span class="required" aria-hidden="true">*</span></label>
+            <div class="input-wrapper">
+              <i class="fas fa-tag input-icon" aria-hidden="true"></i>
+              <input type="text" id="subject" name="subject" placeholder="What's this about?" required minlength="5">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="budget">Budget Range <span class="optional">(Optional)</span></label>
+            <div class="input-wrapper">
+              <i class="fas fa-dollar-sign input-icon" aria-hidden="true"></i>
+              <select id="budget" name="budget">
+                <option value="">Select your budget range</option>
+                <option value="under-500">Under $500</option>
+                <option value="500-1k">$500 – $1,000</option>
+                <option value="1k-5k">$1,000 – $5,000</option>
+                <option value="over-5k">Over $5,000</option>
+                <option value="negotiable">Let's Discuss</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message <span class="required" aria-hidden="true">*</span></label>
+            <div class="input-wrapper textarea-wrapper">
+              <i class="fas fa-comment input-icon textarea-icon" aria-hidden="true"></i>
+              <textarea id="message" name="message" rows="6"
+                placeholder="Tell me about your AI project idea..." required minlength="10"></textarea>
+            </div>
+            <span class="char-count" id="char-count" aria-live="polite">0 / 1000</span>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submit-btn">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+            <span class="btn-text">Send Message</span>
+            <span class="btn-loader" style="display:none">
+              <i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Sending...
+            </span>
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-content">
+
+        <div class="footer-section footer-brand">
+          <span class="footer-logo">Irfan<span class="logo-dot">.</span></span>
+          <p>Building intelligent AI systems and agentic workflows that solve real-world problems through cutting-edge artificial intelligence.</p>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/in/irfanmuhammadkhan08" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+            <a href="https://x.com/irfanimk08" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/irfanmuhammadkhan08" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/irfanmuhammadkhan08" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+            <a href="https://wa.me/923152185186" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+            <a href="https://www.tiktok.com/@irfanmuhammadkhan08" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="https://www.threads.com/@irfanmuhammadkhan08" target="_blank" rel="noopener noreferrer" aria-label="Threads"><i class="fab fa-threads" aria-hidden="true"></i></a>
+            <a href="https://www.snapchat.com/add/irfanimk08" target="_blank" rel="noopener noreferrer" aria-label="Snapchat"><i class="fab fa-snapchat" aria-hidden="true"></i></a>
+          </div>
         </div>
-    </footer>
 
-    <script src="js/main.js"></script>
-    <script src="js/projects.js"></script>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Journey</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="resume.html" target="_blank" rel="noopener noreferrer">View Resume</a></li>
+            <li><a href="cover-letter.html" target="_blank" rel="noopener noreferrer">Cover Letter</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>AI Expertise</h4>
+          <ul>
+            <li><a href="#projects">Agentic AI Systems</a></li>
+            <li><a href="#projects">LLM Integration</a></li>
+            <li><a href="#projects">RAG Development</a></li>
+            <li><a href="#projects">Prompt Engineering</a></li>
+            <li><a href="#projects">AI Automation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <ul class="footer-contact">
+            <li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:irfanmuhammadk786@gmail.com">irfanmuhammadk786@gmail.com</a></li>
+            <li><i class="fab fa-whatsapp" aria-hidden="true"></i><a href="https://wa.me/923152185186">+92 315 2185186</a></li>
+            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>North Karachi, Pakistan</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="footer-year">2026</span> Irfan Muhammad Khan. All rights reserved.</p>
+        <p class="footer-made">Made with <i class="fas fa-heart" aria-hidden="true"></i> &amp; AI</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── SCRIPTS ───────────────────────────────── -->
+  <!-- Three.js for neural network background -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" crossorigin="anonymous"></script>
+
+  <!-- Portfolio scripts -->
+  <script src="js/projects.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cover Letter — Irfan Muhammad Khan | Agentic AI Developer</title>
+  <meta name="description" content="Cover letter of Irfan Muhammad Khan — Agentic AI Developer.">
+  <meta name="robots" content="noindex">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/resume.css">
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- ── ACTION BAR ─────────────────────────────────────── -->
+    <div class="action-bar">
+      <div class="action-bar-left">
+        <a href="index.html" class="btn-back">
+          <i class="fas fa-arrow-left"></i> Portfolio
+        </a>
+        <div class="doc-switcher">
+          <a href="resume.html">
+            <i class="fas fa-file-alt"></i> Resume
+          </a>
+          <a href="cover-letter.html" class="active">
+            <i class="fas fa-envelope-open-text"></i> Cover Letter
+          </a>
+        </div>
+      </div>
+      <div class="action-bar-right">
+        <button class="btn-action ghost" onclick="copyEmailLink()">
+          <i class="fas fa-link"></i> Copy Link
+        </button>
+        <button class="btn-action primary" onclick="window.print()">
+          <i class="fas fa-download"></i> Download PDF
+        </button>
+      </div>
+    </div>
+
+    <!-- ── LIVE CUSTOMIZATION CONTROLS ────────────────────── -->
+    <div class="cl-controls">
+      <h3><i class="fas fa-sliders-h"></i> &nbsp;Customize Cover Letter — updates instantly</h3>
+      <div class="cl-fields">
+        <div class="cl-field">
+          <label for="cl-company">Company Name</label>
+          <input type="text" id="cl-company" placeholder="e.g. Anthropic" value="">
+        </div>
+        <div class="cl-field">
+          <label for="cl-role">Role / Position</label>
+          <input type="text" id="cl-role" placeholder="e.g. AI Engineer" value="">
+        </div>
+        <div class="cl-field">
+          <label for="cl-hiring">Hiring Manager</label>
+          <input type="text" id="cl-hiring" placeholder="e.g. Ms. Sarah Ahmed" value="">
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DOCUMENT ────────────────────────────────────────── -->
+    <div class="document" id="cl-document">
+      <header class="cl-header" id="cl-header"></header>
+      <div class="cl-body" id="cl-body"></div>
+    </div>
+
+    <div class="doc-footer">
+      <p>Auto-generated from <strong>resume-data.js</strong> — update that file to refresh this document. &nbsp;|&nbsp;
+      <a href="index.html">Back to Portfolio</a> &nbsp;|&nbsp;
+      <a href="resume.html">View Resume</a></p>
+    </div>
+
+  </div>
+
+  <!-- Data Sources -->
+  <script src="js/resume-data.js"></script>
+
+  <!-- Cover Letter Renderer -->
+  <script>
+  'use strict';
+
+  let renderTimer = null;
+
+  function getInputs() {
+    const d = window.resumeData;
+    const cl = d.coverLetter;
+    return {
+      company: document.getElementById('cl-company').value.trim() || cl.defaultCompany,
+      role:    document.getElementById('cl-role').value.trim()    || cl.defaultRole,
+      hiring:  document.getElementById('cl-hiring').value.trim()  || cl.defaultHiring
+    };
+  }
+
+  function fillTemplate(str, { company, role, hiring }) {
+    return str
+      .replace(/\{COMPANY\}/g, company)
+      .replace(/\{ROLE\}/g,    role)
+      .replace(/\{HIRING\}/g,  hiring);
+  }
+
+  function getFormattedDate() {
+    return new Date().toLocaleDateString('en-US', {
+      year: 'numeric', month: 'long', day: 'numeric'
+    });
+  }
+
+  function renderCL() {
+    const d  = window.resumeData;
+    const p  = d.personal;
+    const cl = d.coverLetter;
+    const { company, role, hiring } = getInputs();
+
+    /* ── HEADER ──────────────────────────────────────────── */
+    document.getElementById('cl-header').innerHTML = `
+      <div class="cl-header-top">
+        <div class="cl-sender">
+          <div class="sender-name">
+            ${p.name.split(' ').slice(0,-1).join(' ')} <span>${p.name.split(' ').slice(-1)[0]}</span>
+          </div>
+          <div class="sender-title">${p.title}</div>
+          <div class="sender-contact">
+            <a href="mailto:${p.email}"><i class="fas fa-envelope"></i>${p.email}</a>
+            <a href="${p.whatsapp}" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i>${p.phone}</a>
+            <span><i class="fas fa-map-marker-alt"></i>${p.location}</span>
+            <a href="${p.linkedin}" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i>linkedin.com/in/irfanmuhammadkhan08</a>
+            <a href="${p.linktree}" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i>linktr.ee/IrfanIMK</a>
+          </div>
+        </div>
+        <div class="cl-date-location">
+          <span class="cl-date">${getFormattedDate()}</span>
+          <span class="cl-location">Karachi, Pakistan</span>
+        </div>
+      </div>
+
+      <div class="cl-recipient">
+        <div class="recipient-label">To</div>
+        <div class="recipient-to">${hiring}</div>
+        <div class="recipient-company">${company}</div>
+      </div>
+    `;
+
+    /* ── BODY ─────────────────────────────────────────────── */
+    const bodyParagraphs = [
+      fillTemplate(cl.openingLine, { company, role, hiring }),
+      ...cl.body,
+      fillTemplate(cl.closingLine, { company, role, hiring })
+    ];
+
+    document.getElementById('cl-body').innerHTML = `
+      <div class="cl-subject">
+        Re: Application for <span>${role}</span> Position
+        ${company !== cl.defaultCompany ? ` at <span>${company}</span>` : ''}
+      </div>
+
+      <p class="cl-salutation">Dear ${hiring},</p>
+
+      ${bodyParagraphs.map(para => `<p class="cl-paragraph">${para}</p>`).join('')}
+
+      <p class="cl-closing">Warm regards,</p>
+
+      <div class="cl-signature">
+        <div class="cl-sign-name">${p.name}</div>
+        <div class="cl-sign-title">${p.title}</div>
+      </div>
+    `;
+  }
+
+  function scheduleRender() {
+    clearTimeout(renderTimer);
+    renderTimer = setTimeout(renderCL, 120);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Set placeholder values from defaults
+    const cl = window.resumeData.coverLetter;
+    document.getElementById('cl-company').placeholder = cl.defaultCompany;
+    document.getElementById('cl-role').placeholder    = cl.defaultRole;
+    document.getElementById('cl-hiring').placeholder  = cl.defaultHiring;
+
+    // Initial render
+    renderCL();
+
+    // Live updates as user types
+    ['cl-company', 'cl-role', 'cl-hiring'].forEach(id => {
+      document.getElementById(id).addEventListener('input', scheduleRender);
+    });
+  });
+
+  function copyEmailLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      const btn = event.currentTarget;
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+      setTimeout(() => { btn.innerHTML = orig; }, 2000);
+    });
+  }
+  </script>
+
+</body>
+</html>

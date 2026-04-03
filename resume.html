@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume — Irfan Muhammad Khan | Agentic AI Developer</title>
+  <meta name="description" content="Professional resume of Irfan Muhammad Khan — Agentic AI Developer specializing in LLM integration, multi-agent workflows, and intelligent system design.">
+  <meta name="robots" content="noindex">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/resume.css">
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- ── ACTION BAR ─────────────────────────────────────── -->
+    <div class="action-bar">
+      <div class="action-bar-left">
+        <a href="index.html" class="btn-back">
+          <i class="fas fa-arrow-left"></i> Portfolio
+        </a>
+        <div class="doc-switcher">
+          <a href="resume.html" class="active">
+            <i class="fas fa-file-alt"></i> Resume
+          </a>
+          <a href="cover-letter.html">
+            <i class="fas fa-envelope-open-text"></i> Cover Letter
+          </a>
+        </div>
+      </div>
+      <div class="action-bar-right">
+        <button class="btn-action ghost" onclick="copyEmailLink()">
+          <i class="fas fa-link"></i> Copy Link
+        </button>
+        <button class="btn-action primary" onclick="window.print()">
+          <i class="fas fa-download"></i> Download PDF
+        </button>
+      </div>
+    </div>
+
+    <!-- ── DOCUMENT ────────────────────────────────────────── -->
+    <div class="document" id="resume-document">
+
+      <!-- Header — auto-filled from resume-data.js -->
+      <header class="resume-header" id="resume-header"></header>
+
+      <!-- Body -->
+      <div class="resume-body">
+        <main class="resume-main" id="resume-main"></main>
+        <aside class="resume-sidebar" id="resume-sidebar"></aside>
+      </div>
+
+    </div>
+
+    <div class="doc-footer">
+      <p>Auto-generated from <strong>resume-data.js</strong> — update that file to refresh this document. &nbsp;|&nbsp;
+      <a href="index.html">Back to Portfolio</a></p>
+    </div>
+
+  </div>
+
+  <!-- Data Sources -->
+  <script src="js/resume-data.js"></script>
+  <script src="js/projects.js"></script>
+
+  <!-- Resume Renderer -->
+  <script>
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const d  = window.resumeData;
+    const p  = d.personal;
+
+    /* ── HEADER ─────────────────────────────────────────── */
+    document.getElementById('resume-header').innerHTML = `
+      <div class="resume-name">
+        ${p.name.split(' ').slice(0,-1).join(' ')} <span>${p.name.split(' ').slice(-1)[0]}</span>
+      </div>
+      <div class="resume-title">${p.title}</div>
+      <div class="resume-contact">
+        <a class="contact-item" href="mailto:${p.email}">
+          <i class="fas fa-envelope"></i> ${p.email}
+        </a>
+        <a class="contact-item" href="${p.whatsapp}" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> ${p.phone}
+        </a>
+        <span class="contact-item">
+          <i class="fas fa-map-marker-alt"></i> ${p.location}
+        </span>
+        <a class="contact-item" href="${p.linkedin}" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-linkedin"></i> linkedin.com/in/irfanmuhammadkhan08
+        </a>
+        <a class="contact-item" href="${p.linktree}" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-link"></i> linktr.ee/IrfanIMK
+        </a>
+      </div>
+    `;
+
+    /* ── MAIN COLUMN ────────────────────────────────────── */
+    const mainEl = document.getElementById('resume-main');
+
+    // Summary
+    mainEl.innerHTML += `
+      <section class="resume-section">
+        <h2 class="section-title"><i class="fas fa-user"></i> Professional Summary</h2>
+        <p class="summary-text">${d.summary}</p>
+      </section>
+    `;
+
+    // Experience
+    const expHTML = d.experience.map(e => `
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-role"><i class="fas ${e.icon}" style="color:var(--brand);margin-right:6px;font-size:0.75rem;"></i>${e.role}</span>
+          <span class="exp-period">${e.period}</span>
+        </div>
+        <div class="exp-company">${e.company}</div>
+        <ul class="exp-bullets">
+          ${e.highlights.map(h => `<li>${h}</li>`).join('')}
+        </ul>
+      </div>
+    `).join('');
+
+    mainEl.innerHTML += `
+      <section class="resume-section">
+        <h2 class="section-title"><i class="fas fa-briefcase"></i> Experience</h2>
+        ${expHTML}
+      </section>
+    `;
+
+    // Featured Projects — pull from resume-data.js featuredProjects (or top 3 from projectsData)
+    const projects = d.featuredProjects.length
+      ? d.featuredProjects
+      : (window.projectsData || []).slice(0, 3).map(pr => ({
+          name:   `${pr.title} — ${pr.subtitle}`,
+          tech:   pr.technologies.join(' · '),
+          impact: pr.impact
+        }));
+
+    const projHTML = projects.map(pr => `
+      <div class="project-item">
+        <div class="project-name">${pr.name}</div>
+        <div class="project-tech">${pr.tech}</div>
+        <div class="project-impact">${pr.impact}</div>
+      </div>
+    `).join('');
+
+    mainEl.innerHTML += `
+      <section class="resume-section">
+        <h2 class="section-title"><i class="fas fa-rocket"></i> Featured Projects</h2>
+        ${projHTML}
+      </section>
+    `;
+
+    /* ── SIDEBAR ────────────────────────────────────────── */
+    const sideEl = document.getElementById('resume-sidebar');
+
+    // Skills
+    const skillHTML = Object.entries(d.skills).map(([group, tags]) => `
+      <div class="skill-group">
+        <div class="skill-group-name">${group}</div>
+        <div class="skill-tags">
+          ${tags.map(t => `<span class="skill-tag">${t}</span>`).join('')}
+        </div>
+      </div>
+    `).join('');
+
+    sideEl.innerHTML += `
+      <section class="resume-section">
+        <h2 class="section-title"><i class="fas fa-tools"></i> Skills</h2>
+        ${skillHTML}
+      </section>
+    `;
+
+    // Education
+    const eduHTML = d.education.map(e => `
+      <div class="edu-item">
+        <div class="edu-degree">${e.degree}</div>
+        <div class="edu-institution">${e.institution}</div>
+        <div class="edu-period">${e.period}</div>
+        <div class="edu-detail">${e.detail}</div>
+      </div>
+    `).join('');
+
+    sideEl.innerHTML += `
+      <section class="resume-section">
+        <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+        ${eduHTML}
+      </section>
+    `;
+
+    // Languages
+    const langHTML = d.languages.map(l => `
+      <div class="lang-item">
+        <span class="lang-name">${l.lang}</span>
+        <span class="lang-level">${l.level}</span>
+      </div>
+    `).join('');
+
+    sideEl.innerHTML += `
+      <section class="resume-section">
+        <h2 class="section-title"><i class="fas fa-language"></i> Languages</h2>
+        ${langHTML}
+      </section>
+    `;
+
+    // Availability badge
+    sideEl.innerHTML += `
+      <section class="resume-section">
+        <h2 class="section-title"><i class="fas fa-circle"></i> Availability</h2>
+        <div class="skill-tag" style="display:inline-block;font-size:0.8rem;padding:6px 10px;border-color:rgba(0,212,255,0.3);color:var(--brand);">
+          ${p.availability}
+        </div>
+      </section>
+    `;
+  });
+
+  function copyEmailLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      const btn = event.currentTarget;
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+      setTimeout(() => { btn.innerHTML = orig; }, 2000);
+    });
+  }
+  </script>
+
+</body>
+</html>

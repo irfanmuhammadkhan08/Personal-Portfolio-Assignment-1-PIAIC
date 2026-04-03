@@ -1,0 +1,15 @@
+# Development/testing screenshots
+screenshots/mobile-check/
+screenshots/mobile-noanim/
+screenshots/mobile-sections/
+screenshots/*-before.pdf
+screenshots/*-before.png
+screenshots/*-print-preview.png
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp

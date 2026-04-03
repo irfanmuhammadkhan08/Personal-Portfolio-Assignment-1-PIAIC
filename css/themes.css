@@ -1,206 +1,204 @@
-/* Theme Variables */
+/* ================================================
+   THEMES.CSS — Modern Design Token System
+   Uses: OKLCH colors · color-mix() · @property
+   Irfan Muhammad Khan — AI Developer
+   ================================================ */
+
+/* ── @property: typed tokens for animation ───── */
+@property --btn-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 135deg;
+}
+@property --ring-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@property --glow-opacity {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0.5;
+}
+
+/* ── PRIMITIVE COLORS (OKLCH) ─────────────────
+   OKLCH = perceptually uniform, full P3 gamut
+   Format: oklch(lightness chroma hue)
+   ─────────────────────────────────────────── */
 :root {
-  /* Primary Color: Blue (#3498db) */
-  --primary-color: #3498db;
-  --primary-color-light: #5dade2;
-  --primary-color-dark: #2980b9;
+  /* Core hues */
+  --_h-cyan:   210;  /* Electric cyan */
+  --_h-violet: 283;  /* Vivid violet  */
+  --_h-bg:     262;  /* Deep navy     */
 
-  /* Secondary Color: Purple (#9b59b6) */
-  --secondary-color: #9b59b6;
-  --secondary-color-light: #bb8fce;
-  --secondary-color-dark: #8e44ad;
+  /* Brand primitives */
+  --_cyan-50:  oklch(96% 0.04  var(--_h-cyan));
+  --_cyan-200: oklch(88% 0.10  var(--_h-cyan));
+  --_cyan-400: oklch(80% 0.15  var(--_h-cyan));
+  --_cyan-500: oklch(75% 0.18  var(--_h-cyan));   /* primary */
+  --_cyan-600: oklch(65% 0.18  var(--_h-cyan));
+  --_cyan-900: oklch(25% 0.09  var(--_h-cyan));
 
-  /* Neutral Colors */
-  --neutral-50: #f8f9fa;
-  --neutral-100: #f1f3f5;
-  --neutral-200: #e9ecef;
-  --neutral-300: #dee2e6;
-  --neutral-400: #ced4da;
-  --neutral-500: #adb5bd;
-  --neutral-600: #868e96;
-  --neutral-700: #495057;
-  --neutral-800: #343a40;
-  --neutral-900: #212529;
+  --_violet-400: oklch(68% 0.20  var(--_h-violet));
+  --_violet-500: oklch(58% 0.27  var(--_h-violet)); /* secondary */
+  --_violet-600: oklch(48% 0.27  var(--_h-violet));
+  --_violet-900: oklch(22% 0.10  var(--_h-violet));
 
-  /* Additional theme colors */
-  --success-color: #27ae60;
-  --warning-color: #f39c12;
-  --error-color: #e74c3c;
-  --info-color: #17a2b8;
+  /* Background scale (deep navy-black, not pure black) */
+  --_bg-950: oklch(5.5% 0.018 var(--_h-bg));
+  --_bg-900: oklch(7.5% 0.022 var(--_h-bg));
+  --_bg-850: oklch(9.5% 0.025 var(--_h-bg));
+  --_bg-800: oklch(12%  0.028 var(--_h-bg));
+  --_bg-700: oklch(16%  0.030 var(--_h-bg));
+
+  /* Status primitives */
+  --_green-500:  oklch(73% 0.17 155);
+  --_amber-500:  oklch(78% 0.16  75);
+  --_red-500:    oklch(58% 0.22  23);
+  --_info-500:   oklch(75% 0.18 var(--_h-cyan));
+
+  /* ── SEMANTIC TOKENS ────────────────────────── */
+
+  /* Backgrounds */
+  --bg-0:    var(--_bg-950);
+  --bg-1:    var(--_bg-900);
+  --bg-2:    var(--_bg-850);
+  --bg-3:    var(--_bg-800);
+  --bg-card: color-mix(in oklch, var(--_bg-900) 75%, transparent);
+
+  /* Brand */
+  --cyan:         var(--_cyan-500);
+  --cyan-light:   var(--_cyan-400);
+  --cyan-dim:     color-mix(in oklch, var(--cyan) 12%, transparent);
+  --cyan-glow:    color-mix(in oklch, var(--cyan) 30%, transparent);
+  --cyan-glow-lg: color-mix(in oklch, var(--cyan) 15%, transparent);
+
+  --purple:         var(--_violet-500);
+  --purple-light:   var(--_violet-400);
+  --purple-dim:     color-mix(in oklch, var(--purple) 12%, transparent);
+  --purple-glow:    color-mix(in oklch, var(--purple) 30%, transparent);
+  --purple-glow-lg: color-mix(in oklch, var(--purple) 15%, transparent);
+
+  --accent: oklch(68% 0.19 38);  /* warm amber-orange */
+
+  /* Semantic */
+  --color-primary:   var(--cyan);
+  --color-secondary: var(--purple);
+  --color-success:   var(--_green-500);
+  --color-warning:   var(--_amber-500);
+  --color-error:     var(--_red-500);
+  --color-info:      var(--_info-500);
+
+  /* Text */
+  --text-0: oklch(99%  0.002 var(--_h-bg));   /* white */
+  --text-1: oklch(90%  0.010 var(--_h-bg));   /* near-white */
+  --text-2: oklch(65%  0.015 var(--_h-bg));   /* secondary */
+  --text-3: oklch(48%  0.012 var(--_h-bg));   /* muted */
+
+  /* Borders — use color-mix for clean alpha */
+  --border-subtle:  color-mix(in oklch, white 5%,  transparent);
+  --border-default: color-mix(in oklch, white 9%,  transparent);
+  --border-hover:   color-mix(in oklch, var(--cyan) 35%, transparent);
+  --border-focus:   var(--cyan);
+
+  /* Glass morphism */
+  --glass-bg:     color-mix(in oklch, var(--_bg-900) 68%, transparent);
+  --glass-border: color-mix(in oklch, white 8%, transparent);
+  --glass-blur:   blur(20px);
+  --glass-blur-sm: blur(12px);
+
+  /* ── GRADIENTS ──────────────────────────────── */
+  --grad-brand:        linear-gradient(var(--btn-angle), var(--cyan), var(--purple));
+  --grad-brand-fixed:  linear-gradient(135deg, var(--cyan) 0%, var(--purple) 100%);
+  --grad-brand-r:      linear-gradient(135deg, var(--purple) 0%, var(--cyan) 100%);
+  --grad-brand-subtle: linear-gradient(135deg,
+    color-mix(in oklch, var(--cyan) 7%, transparent)   0%,
+    color-mix(in oklch, var(--purple) 7%, transparent) 100%);
+
+  /* Hero atmospheric glow — mesh gradient */
+  --grad-hero-bg:
+    radial-gradient(ellipse 90% 60% at 15% 50%,
+      color-mix(in oklch, var(--cyan) 7%, transparent) 0%,
+      transparent 70%),
+    radial-gradient(ellipse 70% 70% at 85% 15%,
+      color-mix(in oklch, var(--purple) 9%, transparent) 0%,
+      transparent 60%),
+    radial-gradient(ellipse 50% 50% at 50% 85%,
+      color-mix(in oklch, var(--cyan) 4%, transparent) 0%,
+      transparent 60%);
+
+  --grad-divider: linear-gradient(90deg,
+    transparent,
+    color-mix(in oklch, var(--cyan) 25%, transparent),
+    transparent);
+
+  /* ── SHADOWS ────────────────────────────────── */
+  --shadow-sm:         0 2px  8px oklch(0% 0 0 / 0.40);
+  --shadow-md:         0 4px 24px oklch(0% 0 0 / 0.50);
+  --shadow-lg:         0 8px 48px oklch(0% 0 0 / 0.65);
+  --shadow-glow-cyan:
+    0 0 24px color-mix(in oklch, var(--cyan) 30%, transparent),
+    0 0 64px color-mix(in oklch, var(--cyan) 10%, transparent);
+  --shadow-glow-purp:
+    0 0 24px color-mix(in oklch, var(--purple) 30%, transparent),
+    0 0 64px color-mix(in oklch, var(--purple) 10%, transparent);
+  --shadow-card:
+    0 4px 32px oklch(0% 0 0 / 0.40),
+    inset 0 1px 0 color-mix(in oklch, white 5%, transparent);
+
+  /* ── TYPOGRAPHY ─────────────────────────────── */
+  --font-heading: 'Space Grotesk', 'Inter', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+
+  /* ── SPACING (8-point grid) ─────────────────── */
+  --sp-1:   8px;
+  --sp-2:  16px;
+  --sp-3:  24px;
+  --sp-4:  32px;
+  --sp-5:  48px;
+  --sp-6:  64px;
+  --sp-7:  96px;
+  --sp-8: 128px;
+
+  /* ── BORDER RADIUS ──────────────────────────── */
+  --r-xs:   4px;
+  --r-sm:   8px;
+  --r-md:  12px;
+  --r-lg:  16px;
+  --r-xl:  24px;
+  --r-2xl: 32px;
+  --r-full: 9999px;
+
+  /* ── Z-INDEX ────────────────────────────────── */
+  --z-bg:     -1;
+  --z-base:    1;
+  --z-above:  10;
+  --z-nav:   100;
+  --z-over:  200;
+  --z-modal: 300;
+  --z-cursor: 400;
+  --z-loader: 500;
+
+  /* ── TRANSITIONS ────────────────────────────── */
+  --ease-fast:   0.15s ease;
+  --ease-base:   0.3s ease;
+  --ease-slow:   0.6s ease;
+  --ease-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-back:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-/* Light Theme */
-[data-theme="light"] {
-  /* Background colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --bg-tertiary: #e9ecef;
-
-  /* Text colors */
-  --text-primary: #212529;
-  --text-secondary: #6c757d;
-  --text-muted: #868e96;
-  --text-white: #ffffff;
-  --text-black: #000000;
-
-  /* Border colors */
-  --border-color: #dee2e6;
-  --border-color-light: #f1f3f5;
-  --border-color-dark: #adb5bd;
-
-  /* Shadow values */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
-  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.2);
-
-  /* Focus ring */
-  --focus-ring-color: rgba(52, 152, 219, 0.25);
-}
-
-/* Dark Theme */
-[data-theme="dark"] {
-  /* Background colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #2d2d2d;
-  --bg-tertiary: #3a3a3a;
-
-  /* Text colors */
-  --text-primary: #ffffff;
-  --text-secondary: #b3b3b3;
-  --text-muted: #8c8c8c;
-  --text-white: #ffffff;
-  --text-black: #000000;
-
-  /* Border colors */
-  --border-color: #404040;
-  --border-color-light: #595959;
-  --border-color-dark: #262626;
-
-  /* Shadow values */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.6);
-  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.7);
-
-  /* Focus ring */
-  --focus-ring-color: rgba(52, 152, 219, 0.4);
-}
-
-/* Apply theme to body */
-body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Theme-specific adjustments for components */
-
-/* Buttons */
-.btn-primary {
-  background-color: var(--primary-color);
-  color: var(--text-white);
-}
-
-.btn-primary:hover {
-  background-color: var(--primary-color-dark);
-}
-
-.btn-secondary {
-  background-color: var(--secondary-color);
-  color: var(--text-white);
-}
-
-.btn-secondary:hover {
-  background-color: var(--secondary-color-dark);
-}
-
-.btn-outline {
-  background-color: transparent;
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
-}
-
-.btn-outline:hover {
-  background-color: var(--primary-color);
-  color: var(--text-white);
-}
-
-/* Cards */
-.project-card {
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-}
-
-/* Forms */
-.form-group input,
-.form-group textarea {
-  background-color: var(--bg-primary);
-  border: 2px solid var(--border-color);
-  color: var(--text-primary);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px var(--focus-ring-color);
-}
-
-/* Navigation */
-.navbar {
-  background-color: var(--bg-primary);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.nav-link {
-  color: var(--text-primary);
-}
-
-.nav-link:hover {
-  background-color: var(--bg-secondary);
-}
-
-/* Footer */
-.footer {
-  background-color: var(--bg-secondary);
-}
-
-/* Utilities */
-.text-primary {
-  color: var(--primary-color) !important;
-}
-
-.text-secondary {
-  color: var(--secondary-color) !important;
-}
-
-.bg-primary {
-  background-color: var(--bg-primary) !important;
-}
-
-.bg-secondary {
-  background-color: var(--bg-secondary) !important;
-}
-
-.border {
-  border: 1px solid var(--border-color) !important;
-}
-
-.shadow-sm {
-  box-shadow: var(--shadow-sm) !important;
-}
-
-.shadow {
-  box-shadow: var(--shadow) !important;
-}
-
-.shadow-lg {
-  box-shadow: var(--shadow-lg) !important;
-}
-
-.focus-ring {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--focus-ring-color) !important;
+/* ── @supports: P3 wide-gamut upgrade ────────
+   On displays that support Display-P3, OKLCH
+   automatically uses the wider gamut — no extra
+   work needed. The oklch() values above already
+   push into P3 territory where available.
+   ─────────────────────────────────────────── */
+@supports (color: oklch(0% 0 0)) {
+  :root {
+    /* Vivid overrides — richer on P3 displays */
+    --cyan:   oklch(78% 0.195 210);
+    --purple: oklch(60% 0.285 283);
+  }
 }
