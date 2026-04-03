@@ -64,7 +64,7 @@
   --bg-1:    var(--_bg-900);
   --bg-2:    var(--_bg-850);
   --bg-3:    var(--_bg-800);
-  --bg-card: color-mix(in oklch, var(--_bg-900) 75%, transparent);
+  --bg-card: var(--bg-2);
 
   /* Brand */
   --cyan:         var(--_cyan-500);
@@ -101,19 +101,19 @@
   --border-hover:   color-mix(in oklch, var(--cyan) 35%, transparent);
   --border-focus:   var(--cyan);
 
-  /* Glass morphism */
-  --glass-bg:     color-mix(in oklch, var(--_bg-900) 68%, transparent);
-  --glass-border: color-mix(in oklch, white 8%, transparent);
-  --glass-blur:   blur(20px);
-  --glass-blur-sm: blur(12px);
+  /* Glass morphism — solid, no transparency */
+  --glass-bg:     var(--bg-2);
+  --glass-border: color-mix(in oklch, white 12%, transparent);
+  --glass-blur:   none;
+  --glass-blur-sm: none;
 
   /* ── GRADIENTS ──────────────────────────────── */
   --grad-brand:        linear-gradient(var(--btn-angle), var(--cyan), var(--purple));
   --grad-brand-fixed:  linear-gradient(135deg, var(--cyan) 0%, var(--purple) 100%);
   --grad-brand-r:      linear-gradient(135deg, var(--purple) 0%, var(--cyan) 100%);
   --grad-brand-subtle: linear-gradient(135deg,
-    color-mix(in oklch, var(--cyan) 7%, transparent)   0%,
-    color-mix(in oklch, var(--purple) 7%, transparent) 100%);
+    color-mix(in oklch, var(--_bg-850) 93%, var(--_cyan-500))   0%,
+    color-mix(in oklch, var(--_bg-850) 93%, var(--_violet-500)) 100%);
 
   /* Hero atmospheric glow — mesh gradient */
   --grad-hero-bg:
