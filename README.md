@@ -1,83 +1,140 @@
-# Irfan Muhammad Khan - Premium Portfolio
+# Irfan Muhammad Khan — AI Developer Portfolio
 
-A modern, professional portfolio website showcasing web development projects and skills built with HTML, CSS, and vanilla JavaScript.
+A premium, immersive portfolio website built with HTML, CSS, and vanilla JavaScript. Features a live Three.js neural network background, full dark theme, resume and cover letter pages, and a comprehensive showcase of AI & agentic systems projects.
+
+---
 
 ## Features
 
-- **Premium Design**: Modern, clean aesthetic with attention to typography and spacing
-- **Dark Mode Support**: Automatic dark/light mode based on system preference with manual toggle
-- **Responsive Layout**: Mobile-first design that works on all device sizes
-- **Project Showcase**: Dedicated section to highlight key projects with descriptions and links
-- **Fast Loading**: Optimized assets and minimal JavaScript for quick load times
-- **Accessibility**: Semantic HTML and proper ARIA attributes for screen readers
-- **Interactive Elements**: Smooth animations, hover effects, and scroll interactions
-- **Complete Sections**: Home, About, Skills, Projects, Experience, and Contact
+- **Three.js Neural Network** — Animated 3D particle network in the hero background; mobile-optimized with touch parallax
+- **Immersive Dark Theme** — Deep navy-black base with electric cyan & violet accents using OKLCH color tokens
+- **Responsive Layout** — Mobile-first; tested on Chrome, Firefox, and WebKit across mobile/tablet/desktop
+- **Custom Cursor** — Dot + ring cursor with hover and click states (desktop only)
+- **Loading Screen** — Animated progress bar on entry
+- **Typing Effect** — Cycling specializations in the hero headline
+- **Scroll Animations** — Intersection Observer–based reveal for sections, skill cards, and timeline
+- **Project Filters** — Filter grid by category (Agentic AI / Web App / AI Tools)
+- **Skill Bars** — Animated progress bars triggered on scroll
+- **Counter Animation** — Stats count up when visible
+- **Contact Form** — Client-side validation with toast notifications
+- **Resume Page** — Printable A4 resume (`resume.html`)
+- **Cover Letter Page** — Printable cover letter (`cover-letter.html`)
+- **Scroll Progress Bar** — Fixed top indicator
+- **Back to Top** — Appears after scrolling 400px
+- **Accessibility** — Skip link, ARIA attributes, semantic HTML throughout
+
+---
 
 ## Tech Stack
 
-- **HTML5**: Semantic markup for content structure
-- **CSS3**: Flexbox/Grid for layouts, custom properties for theming, animations
-- **Vanilla JavaScript**: No frameworks - pure ES6+ for interactivity and functionality
+| Layer | Technology |
+|-------|-----------|
+| Markup | HTML5 — semantic, ARIA-compliant |
+| Styles | CSS3 — custom properties (OKLCH), Grid, Flexbox, `@property` animations |
+| Scripting | Vanilla JavaScript (ES6+) — no frameworks |
+| 3D Animation | Three.js — WebGL neural network particle system |
+| Icons | Font Awesome 6.5 |
+| Fonts | Space Grotesk (headings) · Inter (body) · JetBrains Mono (code) |
+
+---
+
+## Project Structure
+
+```
+portfolio/
+├── index.html            # Main portfolio page
+├── resume.html           # Printable resume (A4)
+├── cover-letter.html     # Printable cover letter
+├── css/
+│   ├── themes.css        # Design tokens (OKLCH colors, spacing, typography)
+│   ├── styles.css        # All component styles
+│   └── resume.css        # Resume & cover letter print styles
+├── js/
+│   ├── main.js           # Core interactions (Three.js, cursor, nav, animations)
+│   ├── projects.js       # Project data & card rendering
+│   └── resume-data.js    # Resume & cover letter content data
+├── assets/
+│   └── images/           # Profile photo
+├── screenshots/          # Browser compatibility screenshots
+└── CLAUDE.md             # Project development guide
+```
+
+---
+
+## Sections
+
+1. **Hero** — Three.js neural network, typing effect, profile image, stats counter, CTA buttons
+2. **About** — Bio, highlight cards, animated skill progress bars
+3. **Skills** — Technology tags grouped by category (AI/ML, Backend, Frontend, Cloud, Tools)
+4. **Projects** — Filterable card grid with 6 AI projects (problem → solution → impact format)
+5. **Journey** — Vertical timeline of education and experience
+6. **Contact** — Validated form with character counter + contact info sidebar
+7. **Footer** — Social links, quick nav, copyright
+
+---
+
+## Projects Showcased
+
+| Project | Type | Stack |
+|---------|------|-------|
+| **AgentFlow** — AI Task Automation Engine | Agentic AI | Python, OpenAI API, LangChain, FastAPI, ChromaDB |
+| **DocuBot** — RAG Document Assistant | Agentic AI | Python, Claude API, LlamaIndex, Pinecone, Streamlit |
+| **PromptLab** — Prompt Engineering Toolkit | AI Tools | HTML5, CSS3, JavaScript, OpenAI API, Gemini API |
+| **BizMind** — AI Business Advisor | Agentic AI | Python, Claude API, FastAPI, PostgreSQL, React |
+| **ContentForge** — AI Content Platform | AI Tools | Python, GPT-4o, DALL-E 3, Next.js, Tailwind CSS |
+| **ResumeAI** — Smart Resume Builder | Web App | Python, OpenAI API, HTML5, CSS3, JavaScript |
+
+---
 
 ## Design System
 
-### Color Palette
-- **Primary**: Blue (#3498db) - Used for main interactive elements, prominent headings, and key accents
-- **Secondary**: Purple (#9b59b6) - Used for complementary accents, secondary actions, and subtle highlights
-- **Neutral**: Grayscale tones for text, backgrounds, and borders to ensure readability
+### Colors (OKLCH)
+- **Cyan** `oklch(75% 0.18 210)` — primary interactive, glows, accents
+- **Violet** `oklch(58% 0.27 283)` — secondary accents, gradients
+- **Background** `oklch(5.5%–16% 0.018–0.03 262)` — deep navy scale
 
-### Spacing Scale
-Based on an 8px grid system, ensuring consistent vertical and horizontal rhythm:
-- **Base Unit**: `8px`
-- **Scale**: `8px, 16px, 24px, 32px, 48px, 64px` for margins, paddings, and component sizing
+### Spacing
+8px base grid: `8 · 16 · 24 · 32 · 48 · 64px`
 
-### Typography Scale
-A responsive typographic scale to maintain hierarchy and readability across devices.
+### Typography
+- Headings: **Space Grotesk** 700/600
+- Body: **Inter** 400/500
+- Code/mono: **JetBrains Mono** 400/500
 
-## Sections Included
+---
 
-1. **Navigation** - Fixed header with smooth scrolling and theme toggle
-2. **Hero** - Animated introduction with statistics and call-to-action buttons
-3. **About** - Personal information with skill bars and highlights
-4. **Skills** - Organized technology categories with tags
-5. **Projects** - Interactive project grid with hover effects and filtering
-6. **Experience** - Timeline of work experience with achievements
-7. **Contact** - Comprehensive form with validation and contact information
-8. **Footer** - Multi-column layout with links and social profiles
+## Mobile Optimizations
 
-## Performance Considerations
+- Three.js connection lines disabled on mobile (removes O(n²) computation per frame)
+- Particle count reduced to 30 on mobile (120 on desktop)
+- Touch parallax via `touchmove` listener
+- `orientationchange` handler for correct canvas sizing on screen rotation
+- Animation paused when tab is hidden (`visibilitychange`)
+- Hero height uses `100svh` to avoid iOS Safari browser-bar overflow
 
-- Images are optimized and properly sized
-- Minimal JavaScript for core functionality
-- Efficient CSS selectors and layout methods
-- Smooth animations using CSS transforms and transitions
+---
 
 ## Browser Support
 
-- Modern browsers supporting CSS Grid/Flexbox
-- ES6+ JavaScript features
-- Recommended: Chrome, Firefox, Safari, Edge (latest versions)
+Tested with Playwright across:
+- Chromium (desktop · tablet · mobile)
+- Firefox (desktop · tablet · mobile)
+- WebKit / Safari (desktop · tablet · mobile)
 
-## Setup Instructions
+---
 
-1. Clone or download the repository
-2. Open `index.html` in a browser to view the portfolio
-3. Customize content in HTML/CSS/JS files as needed
+## Setup
 
-## Customization Guide
+```bash
+# Clone the repo
+git clone https://github.com/irfanmuhammadkhan08/Personal-Portfolio-Assignment-1-PIAIC.git
 
-### Personal Information
-- Update name, title, and bio in `index.html`
-- Replace contact information and social media links
-- Update project details in `js/projects.js`
+# Open in browser — no build step required
+open index.html
+```
 
-### Projects Section
-- Add project details in the projects array in `js/projects.js`
-- Include project name, description, technologies, and links
-
-### Color Scheme
-- Modify CSS custom properties in `css/themes.css` for color customization
+---
 
 ## License
 
-MIT License - feel free to use as inspiration for your own portfolio."# Personal-Portfolio-Assignment-1-PIAIC" 
+MIT — feel free to use as inspiration for your own portfolio.
