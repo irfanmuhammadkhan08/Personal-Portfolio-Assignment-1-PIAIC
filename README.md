@@ -1,4 +1,4 @@
-# Ahmed Raza - Premium Portfolio
+# Irfan Muhammad Khan - Premium Portfolio
 
 A modern, professional portfolio website showcasing web development projects and skills built with HTML, CSS, and vanilla JavaScript.
 
